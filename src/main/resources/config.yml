@@ -1,0 +1,25 @@
+spawn:
+  level: world
+  x: 0
+  y: 72
+  z: 0
+discord:
+  guild_id: "1420288093478588467"
+  users:
+    ducky: "334392742266535957"
+    kevwie: "895083303814721608"
+  roles:
+    subscriber_role_id: "1420289535794876416"
+    moderator_role_id: "1420289061939056730"
+    vip_role_id: "1436279016628813925"
+    required_level_role_id: "1420740633181687858"
+    required_level_role_name: "Loyal Kiwi"
+    required_level_num: "5"
+access_control:
+  link_required_to_join: true
+lang:
+  messages:
+    welcomes:
+      - "\uE005"
+      - "\uE006"
+      - "\uE000"

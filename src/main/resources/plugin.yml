@@ -1,0 +1,61 @@
+name: KiwiSMP
+version: '1.1-1.21.10'
+main: lol.duckyyy.kevsmp.KevSmp
+api-version: '1.21.10'
+load: STARTUP
+authors: [ duckyyylol ]
+depend: [DiscordSRV, LuckPerms]
+permissions:
+  kiwismp.*:
+    default: op
+  kiwismp.admin:
+    default: op
+  kiwismp.level_immune:
+    default: op
+    children: [kiwismp.allowed]
+  kiwismp.verbose:
+    default: op
+  kiwismp.mod:
+    default: op
+  kiwismp.unlink:
+    default: op
+  kiwismp.allowed:
+    default: op
+  kiwismp.deny_lock:
+    default: false
+  kiwismp.default:
+    default: op
+commands:
+  sync:
+    description: "Sync your Discord account status"
+    usage: "/sync"
+    aliases: [sync, syncaccount, syncdiscord]
+    permission: kiwismp.default
+  unlink:
+    description: "Unlink Discord"
+    usage: "/unlink"
+    aliases: [ unlinkdiscord ]
+    permission: kiwismp.unlink
+  modstats:
+    description: "Toggle moderator-only stat view in the player (tab) list"
+    usage: "/modstats"
+    aliases: [ togglemodstats ]
+    permission: kiwismp.mod
+  modalerts:
+    description: "Toggle moderator-only server status alerts"
+    usage: "/modalerts"
+    aliases: [ togglemodalerts ]
+    permission: kiwismp.mod
+  reloadchests:
+    description: "Reload death chests"
+    usage: "/reloadchests"
+    aliases: [ reloadchests, reloaddeathchests ]
+    permission: kiwismp.admin
+  trust:
+    description: "Trust another player to use your locked block"
+    usage: "/trust <username>"
+    aliases: [trustplayer, allow]
+  untrust:
+    description: "Distrust another player from using your locked block"
+    usage: "/untrust <username>"
+    aliases: [ distrust, unallow, disallow, distrustplayer ]
