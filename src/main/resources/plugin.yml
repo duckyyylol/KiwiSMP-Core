@@ -10,6 +10,8 @@ permissions:
     default: op
   kiwismp.admin:
     default: op
+  kiwismp.announce:
+    default: op
   kiwismp.level_immune:
     default: op
     children: [kiwismp.allowed]
@@ -59,3 +61,12 @@ commands:
     description: "Distrust another player from using your locked block"
     usage: "/untrust <username>"
     aliases: [ distrust, unallow, disallow, distrustplayer ]
+  maintenance:
+    description: "Toggle maintenance mode on/off"
+    usage: "/maintenance"
+    aliases: [maintenancemode, togglemaintenance]
+    permission: kiwismp.*
+  announce:
+    description: "Make an announcement (MiniMessage supported)"
+    usage: "/announce <announcement>"
+    permission: kiwismp.announce

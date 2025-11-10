@@ -22,6 +22,7 @@ import lol.duckyyy.kevsmp.commands.*;
 import lol.duckyyy.kevsmp.events.AccountLinkListener;
 import lol.duckyyy.kevsmp.events.PlayerConfigurationBooleanUpdateEvent;
 import lol.duckyyy.kevsmp.managers.ChestLockManager;
+import lol.duckyyy.kevsmp.managers.MaintenanceModeManager;
 import lol.duckyyy.kevsmp.tasks.AFKTimer;
 import lol.duckyyy.kevsmp.tasks.Alerts;
 import net.kyori.adventure.key.Key;
@@ -80,6 +81,7 @@ public final class KevSmp extends JavaPlugin implements Listener {
     public static FileConfiguration dataStorage;
     public static Dialog unlinkConfirmDialog;
     public ChestLockManager CLM;
+    public MaintenanceModeManager MaintenanceManager;
     public HashMap<UUID, Integer> linkChecks = new HashMap<>();
     public HashMap<UUID, Integer> levelChecks = new HashMap<>();
     public HashMap<UUID, Integer> afkers = new HashMap<>();
@@ -474,7 +476,9 @@ public final class KevSmp extends JavaPlugin implements Listener {
         chestConfig = loadChestConfig();
         dataStorage = loadDataStorageFile();
         CLM = new ChestLockManager(this);
+        MaintenanceManager = new MaintenanceModeManager(this);
         Bukkit.getPluginManager().registerEvents(CLM, this);
+        Bukkit.getPluginManager().registerEvents(MaintenanceManager, this);
 
         DialogAction.StaticAction confirmAction = DialogAction.staticAction(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "discord unlink"));
 
@@ -502,6 +506,8 @@ public final class KevSmp extends JavaPlugin implements Listener {
         Bukkit.getPluginCommand("modalerts").setExecutor(new ToggleModAlertsCommand());
         Bukkit.getPluginCommand("trust").setExecutor(new TrustToBlockCommand(this));
         Bukkit.getPluginCommand("untrust").setExecutor(new UntrustToBlockCommand(this));
+        Bukkit.getPluginCommand("maintenance").setExecutor(new ToggleMaintenanceCommand(this));
+        Bukkit.getPluginCommand("announce").setExecutor(new AnnounceCommand(this));
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new AFKTimer(this), 20, 20);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Alerts(this), 20, 20);
